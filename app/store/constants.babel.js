@@ -1,0 +1,6 @@
+
+export default {
+
+    INCREMENT : 'INCREMENT',
+
+};
