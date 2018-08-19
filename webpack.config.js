@@ -21,7 +21,7 @@ module.exports = {
                     loaders : {
                         'less' : 'vue-style-loader!css-loader!less-loader',
                         'css'  : 'style-loader!css-loader',
-                    }, 
+                    },
                 },
             },
 
@@ -63,8 +63,8 @@ module.exports = {
                                     disabled : [
                                         'common/space/afterPunctuation',
                                         'ru/space/afterPunctuation',
-                                    ], 
-                                }, 
+                                    ],
+                                },
                             },
 
                             markdown : { html: true },
@@ -75,13 +75,14 @@ module.exports = {
                     'yaml-loader',
                 ],
             },
-        ], 
+        ],
     },
     resolve : {
         unsafeCache : true,
         modules     : [
             path.resolve('./node_modules'),
         ],
+        alias : { '@components': path.join( __dirname, 'app/components' ) },
     },
     devServer : {
         historyApiFallback : true,

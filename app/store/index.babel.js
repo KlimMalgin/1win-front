@@ -1,26 +1,13 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import constants from './constants.babel';
-
-// import test from './test.babel';
-
-
-let { INCREMENT } = constants;
+import pagination from './pagination';
 
 Vue.use( Vuex );
 
-
-const state = { counter: 0 };
-
-const mutations = {
-    [INCREMENT]( state ) {
-        state.counter++;
-    },
-};
-
-const actions = { increment: ( { commit } ) => commit(INCREMENT) };
-
-const getters = { increment: ( state ) => state.counter };
+const state = {};
+const mutations = {};
+const actions = {};
+const getters = {};
 
 let storeObjects = {
     state,
@@ -28,7 +15,7 @@ let storeObjects = {
     actions,
     getters,
 
-    // modules : { test },
+    modules : { pagination },
 };
 
 export default new Vuex.Store( storeObjects );

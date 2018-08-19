@@ -1,10 +1,8 @@
 <template>
     <div class="application">
-        Application
-        <br />Menu:
-        <router-link to="main">to main</router-link>
-        <router-link to="test">to test</router-link>
-        <router-view></router-view>
+        <b-container>
+            <router-view></router-view>
+        </b-container>
     </div>
 </template>
 
@@ -18,5 +16,7 @@ export default {
 </script>
 
 <style lang="less">
-.application {}
+.application {
+    padding: 8px;
+}
 </style>
