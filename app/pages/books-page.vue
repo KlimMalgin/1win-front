@@ -48,6 +48,7 @@ export default {
     },
     mounted() {
         this.$store.dispatch('getBooksPage');
+        this.$store.dispatch('getTotalBooks');
     },
 };
 </script>

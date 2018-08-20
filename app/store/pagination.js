@@ -2,7 +2,12 @@ import constants from './constants';
 import cfg from '../../configs/api';
 import axios from 'axios';
 
-let { SET_BOOKS_PER_PAGE, SET_CURRENT_PAGE, RESPONSE_BOOKS_SUCCESS } = constants;
+let {
+    SET_BOOKS_PER_PAGE,
+    SET_CURRENT_PAGE,
+    RESPONSE_BOOKS_SUCCESS,
+    SET_TOTAL_BOOKS,
+} = constants;
 
 const json = response => response.data;
 
@@ -15,6 +20,9 @@ export default {
         booksPage    : [],
     },
     mutations : {
+        [SET_TOTAL_BOOKS](state, booksCount) {
+            state.totalBooks = booksCount;
+        },
         [SET_CURRENT_PAGE](state, pageNumber) {
             state.currentPage = pageNumber;
         },
@@ -27,7 +35,12 @@ export default {
     },
     actions : {
 
-        // getTotalBooks : () => {},
+        getTotalBooks : ({ commit }) => {
+            axios.get( `${cfg.apiHost}/books/count` ).then(json).then(response => {
+                console.log('response ', response.data.count);
+                commit(SET_TOTAL_BOOKS, response.data.count);
+            });
+        },
         getBooksPage : ({ commit, getters }) => {
             axios.get( `${cfg.apiHost}/books?offset=${getters.offset}&count=${getters.booksPerPage}` ).then(json).then(response => {
                 commit('RESPONSE_BOOKS_SUCCESS', response.data.rows || []);
