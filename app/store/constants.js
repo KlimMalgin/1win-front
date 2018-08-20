@@ -12,4 +12,7 @@ export default {
     CHANGE_DESCRIPTION     : 'CHANGE_DESCRIPTION',
     CHANGE_AUTHOR          : 'CHANGE_AUTHOR',
     CHANGE_IMAGE           : 'CHANGE_IMAGE',
+    SAVE_BOOK              : 'SAVE_BOOK',
+    SAVE_BOOK_SUCCESS      : 'SAVE_BOOK_SUCCESS',
+    SAVE_BOOK_FAIL         : 'SAVE_BOOK_FAIL',
 };

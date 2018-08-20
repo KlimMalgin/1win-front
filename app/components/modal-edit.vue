@@ -12,7 +12,13 @@
                 </b-row>
                 <b-row>
                     <b-col sm="3" class="text-left"><label for="type-description">Описание:</label></b-col>
-                    <b-col sm="9"><b-form-input v-model="changeDescription" type="text" id="type-description" placeholder="Описание книги"></b-form-input></b-col>
+                    <b-col sm="9">
+                        <b-form-textarea id="type-description"
+                             v-model="changeDescription"
+                             placeholder="Описание книги"
+                             :rows="3"
+                             :max-rows="6"></b-form-textarea>
+                    </b-col>
                 </b-row>
                 <b-row>
                     <b-col sm="3" class="text-left"><label for="type-author">Автор:</label></b-col>
@@ -23,19 +29,19 @@
                     <b-col sm="9"><b-form-input v-model="changeImage" type="text" id="type-image" placeholder="Ссылка на изображение"></b-form-input></b-col>
                 </b-row>
             </b-container>
-            <b-btn class="mt-3" block @click="hide">Применить</b-btn>
+
+            <b-btn class="mt-3" block @click="hide" :disabled="saveBookInProgress">Применить</b-btn>
         </b-modal>
     </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 
 export default {
-    name  : 'modal-edit',
-    props : {
-
-    },
+    name : 'modal-edit',
     computed : {
+        ...mapGetters(['saveBookInProgress']),
         changeTitle : {
             get() {
                 return this.$store.getters.editable.title;
@@ -82,6 +88,7 @@ export default {
             this.$refs.modalEdit.show();
         },
         hide() {
+            this.$store.dispatch('saveBookItem');
             this.$refs.modalEdit.hide();
         },
     },

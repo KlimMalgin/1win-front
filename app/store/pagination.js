@@ -37,7 +37,6 @@ export default {
 
         getTotalBooks : ({ commit }) => {
             axios.get( `${cfg.apiHost}/books/count` ).then(json).then(response => {
-                console.log('response ', response.data.count);
                 commit(SET_TOTAL_BOOKS, response.data.count);
             });
         },
@@ -47,13 +46,11 @@ export default {
             });
         },
         setBooksPerPage : ({ commit, dispatch }, bpp) => {
-            console.log('setBooksPerPage');
             commit(SET_BOOKS_PER_PAGE, bpp);
             dispatch('getBooksPage');
         },
         setPage : ({ commit, dispatch }, pageNumber) => {
-            console.log('setPage');
-            commit('SET_CURRENT_PAGE', pageNumber);
+            commit(SET_CURRENT_PAGE, pageNumber);
             dispatch('getBooksPage');
         },
     },
