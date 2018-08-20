@@ -13,26 +13,39 @@
             <p class="card-text">
                 {{item.description}}
             </p>
-            <b-button href="#" variant="primary">Подробнее</b-button>
+            <b-button @click="showEdit(item)" variant="primary">Редактировать</b-button>
         </b-card>
 
         <pagination-bar />
+
+        <modal-edit ref="customModalEdit" @hide="onHide" />
     </div>
 </template>
 
 <script>
 import paginationBar from '@components/pagination-bar.vue';
+import modalEdit from '@components/modal-edit.vue';
+
 export default {
     name       : 'main-page',
     components : {
         paginationBar,
+        modalEdit,
     },
     computed : {
         books() {
             return this.$store.getters.books;
         },
     },
-    methods : {},
+    methods : {
+        showEdit(item) {
+            this.$store.commit('SET_EDITABLE_ITEM', item);
+            this.$refs.customModalEdit.show();
+        },
+        onHide() {
+            this.$store.commit('RESET_EDITABLE_ITEM');
+        },
+    },
     mounted() {
         this.$store.dispatch('getBooksPage');
     },
