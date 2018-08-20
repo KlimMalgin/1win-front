@@ -42,8 +42,8 @@ export default {
         },
     },
     getters : {
-        page         : state => state.currentPage,
-        offset       : state => state.currentPage * state.booksPerPage,
+        page         : state => state.currentPage < 1 ? 1 : state.currentPage,
+        offset       : (state, getters) => (getters.page - 1) * getters.booksPerPage,
         books        : state => state.booksPage,
         booksPerPage : state => state.booksPerPage,
     },

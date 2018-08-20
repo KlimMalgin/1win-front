@@ -13,6 +13,10 @@ const router = new VueRouter( {
         {
             path      : '/books',
             component : BooksPage,
+        },
+        {
+            path      : '/books/:pageId',
+            component : BooksPage,
         }, /* {
             path      : '/test',
             component : TestPage,
