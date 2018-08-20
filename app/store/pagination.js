@@ -9,6 +9,7 @@ const json = response => response.data;
 export default {
 
     state : {
+        totalBooks   : 1000,
         currentPage  : 0,
         booksPerPage : 5,
         booksPage    : [],
@@ -25,6 +26,8 @@ export default {
         },
     },
     actions : {
+
+        // getTotalBooks : () => {},
         getBooksPage : ({ commit, getters }) => {
             axios.get( `${cfg.apiHost}/books?offset=${getters.offset}&count=${getters.booksPerPage}` ).then(json).then(response => {
                 commit('RESPONSE_BOOKS_SUCCESS', response.data.rows || []);
@@ -46,6 +49,7 @@ export default {
         offset       : (state, getters) => (getters.page - 1) * getters.booksPerPage,
         books        : state => state.booksPage,
         booksPerPage : state => state.booksPerPage,
+        totalBooks   : state => state.totalBooks,
     },
 
 };

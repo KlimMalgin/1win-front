@@ -1,7 +1,8 @@
 
 <template>
     <div class="pagination-bar">
-        <b-pagination-nav align="center" :link-gen="linkGen" :number-of-pages="10" base-url="/books" v-model="page" />
+        <b-pagination size="md" :total-rows="totalBooks" v-model="page" :per-page="booksPerPage"></b-pagination>
+
         <b-form-select v-model="booksPerPage" :options="options" class="mb-3 pagination-bar__select" />
     </div>
 </template>
@@ -26,7 +27,8 @@ export default {
     },
     components : {},
     computed   : {
-        //...mapGetters(['page']),
+        ...mapGetters(['totalBooks']),
+
         page : {
             get() {
                 return this.$store.getters.page;
@@ -46,13 +48,9 @@ export default {
     },
     methods : {
         linkGen(pageNum) {
-            return '#books/' + pageNum;
+            return '/books/' + pageNum;
         },
     },
-    /*mounted() {
-        debugger;
-        this.$route.params.pageId
-    }*/
 };
 </script>
 

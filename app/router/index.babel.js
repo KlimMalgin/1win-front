@@ -9,20 +9,15 @@ Vue.use( VueRouter );
 
 const router = new VueRouter( {
 
+    mode : 'history',
+
     routes : [
         {
-            path      : '/books',
+            path      : '/',
             component : BooksPage,
-        },
-        {
-            path      : '/books/:pageId',
-            component : BooksPage,
-        }, /* {
-            path      : '/test',
-            component : TestPage,
-        }, */ {
+        }, {
             path     : '*',
-            redirect : '/books',
+            redirect : '/',
         },
     ],
 
